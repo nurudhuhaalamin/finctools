@@ -1,1 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ─── FincTools Design Tokens ─── */
+:root {
+  --navy:           #0A1628;
+  --navy-dark:      #060d1a;
+  --emerald:        #10B981;
+  --bg:             #F8FAFC;
+  --surface:        #FFFFFF;
+  --surface-2:      #F1F5F9;
+  --text-primary:   #1E293B;
+  --text-secondary: #64748B;
+  --border:         #E2E8F0;
+  --danger:         #EF4444;
+  --warning:        #F59E0B;
+}
+
+.dark {
+  --bg:             #0F172A;
+  --surface:        #1E293B;
+  --surface-2:      #0f1e32;
+  --text-primary:   #F1F5F9;
+  --text-secondary: #94A3B8;
+  --border:         #334155;
+}
+
+/* ─── Base ─── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ─── Numbers — always tabular ─── */
+.num {
+  font-family: var(--font-jetbrains), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── FincTools Components ─── */
+@layer components {
+
+  /* Card */
+  .finc-card {
+    @apply bg-white dark:bg-slate-800 border border-slate-200
+           dark:border-slate-700 rounded-xl p-5 transition-all duration-200;
+  }
+
+  .finc-card-hover {
+    @apply finc-card hover:shadow-lg hover:border-emerald-400
+           dark:hover:border-emerald-500 hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  /* Input */
+  .finc-input {
+    @apply w-full px-4 py-3 rounded-lg border border-slate-200
+           dark:border-slate-700 bg-slate-50 dark:bg-slate-900
+           text-slate-900 dark:text-slate-100
+           focus:outline-none focus:ring-2 focus:ring-emerald-500
+           focus:border-transparent transition-all text-base;
+  }
+
+  /* Label */
+  .finc-label {
+    @apply block text-sm font-medium text-slate-600
+           dark:text-slate-400 mb-1.5;
+  }
+
+  /* Button primary */
+  .finc-btn {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+           bg-emerald-500 hover:bg-emerald-600 text-white font-semibold
+           text-sm transition-all duration-150 active:scale-95;
+  }
+
+  /* Button ghost */
+  .finc-btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg
+           text-slate-600 dark:text-slate-300
+           hover:bg-slate-100 dark:hover:bg-slate-800
+           font-medium text-sm transition-all duration-150;
+  }
+
+  /* Result output box */
+  .finc-result {
+    @apply rounded-xl p-4 border;
+  }
+
+  .finc-result-good {
+    @apply finc-result bg-emerald-50 border-emerald-200
+           dark:bg-emerald-950/30 dark:border-emerald-800;
+  }
+
+  .finc-result-warn {
+    @apply finc-result bg-amber-50 border-amber-200
+           dark:bg-amber-950/30 dark:border-amber-800;
+  }
+
+  .finc-result-danger {
+    @apply finc-result bg-red-50 border-red-200
+           dark:bg-red-950/30 dark:border-red-800;
+  }
+
+  /* Result number (large) */
+  .finc-result-value {
+    @apply font-mono text-3xl font-bold tracking-tight;
+  }
+
+  /* Disclaimer badge */
+  .finc-disclaimer {
+    @apply flex gap-2 items-start text-xs text-slate-500
+           dark:text-slate-400 bg-slate-50 dark:bg-slate-900
+           border border-slate-200 dark:border-slate-700
+           rounded-lg p-3 mt-4;
+  }
+
+  /* Category badge */
+  .finc-badge {
+    @apply inline-flex items-center text-xs font-medium px-2 py-0.5
+           rounded-full border;
+  }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
+
+/* ─── Selection ─── */
+::selection {
+  background: #10B98133;
+  color: inherit;
+}
