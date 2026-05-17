@@ -1,1 +1,22 @@
-
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import InvestasiToolPage from '@/components/layout/InvestasiToolPage'
+import GoldDCASimulator from '@/components/tools/investasi/GoldDCASimulator'
+export const metadata: Metadata = { title: 'Gold DCA Simulator | FincTools', description: 'Simulasi DCA investasi emas — hitung gram yang terkumpul dan proyeksi nilai di target harga.' }
+export default function Page() {
+  return (<><Header /><main className="mx-auto max-w-4xl px-4 py-8">
+    <nav className="flex items-center gap-1 text-xs text-[--text-secondary] mb-6"><Link href="/" className="hover:text-finc-green transition-colors">Home</Link><ChevronRight size={12}/><Link href="/investasi" className="hover:text-finc-green transition-colors">Investasi</Link><ChevronRight size={12}/><span className="text-[--text-primary] font-medium">Gold DCA Simulator</span></nav>
+    <InvestasiToolPage name="Gold DCA Simulator" description="Simulasi DCA investasi emas — hitung gram yang terkumpul dan proyeksi nilai di target harga."
+      steps={[{title:'Isi semua input',desc:'Masukkan data investasi kamu pada setiap field yang tersedia.'},{title:'Sesuaikan parameter',desc:'Gunakan slider untuk menyesuaikan nilai dengan kondisi investasi aktual.'},{title:'Baca hasilnya',desc:'Semua hasil dihitung real-time. Tabel proyeksi menampilkan perkembangan per tahun.'},{title:'Gunakan sebagai referensi',desc:'Hasil adalah estimasi berdasarkan asumsi input. Return aktual bisa berbeda.'}]}
+      formula="Semua kalkulasi menggunakan formula keuangan standar yang digunakan dalam analisis investasi profesional."
+      variables={[{name:'Input',desc:'Semua variabel input disesuaikan dengan kebutuhan spesifik tool ini'},{name:'Output',desc:'Hasil kalkulasi berbasis formula matematika keuangan yang terverifikasi'}]}
+      history={"Instrumen investasi seperti obligasi, emas, dan saham dividen telah menjadi tulang punggung portofolio investor profesional selama berabad-abad. Obligasi pemerintah modern pertama kali dikenal di Eropa abad ke-17, sementara investasi emas sebagai lindung nilai telah ada sejak peradaban kuno.\n\nDi Indonesia, Surat Berharga Negara (SBN) ritel pertama — ORI001 — diluncurkan pada tahun 2006, membuka akses investasi obligasi pemerintah ke masyarakat umum dengan minimum pembelian yang terjangkau.\n\nInvestasi dividen dipopulerkan oleh Benjamin Graham dan kemudian Geraldine Weiss melalui konsep 'dividend yield theory' yang menekankan pentingnya yield dividen sebagai indikator nilai saham."}
+      faqs={[{q:'Apakah hasil proyeksi ini akurat?',a:'Akurat secara matematis berdasarkan input yang kamu berikan. Akurasi proyeksi bergantung pada seberapa realistis asumsi yang digunakan — terutama estimasi return dan pertumbuhan.'},{q:'Bagaimana cara mendapatkan data yang dibutuhkan?',a:'Untuk obligasi: cek prospektus atau website DJPPR (djppr.kemenkeu.go.id). Untuk saham: gunakan data dari IDX, Stockbit, atau RTI. Untuk emas: cek harga Antam di logammulia.com.'},{q:'Apakah ini memperhitungkan pajak?',a:'Beberapa tool sudah memasukkan input pajak. Untuk tool yang tidak, asumsi adalah sebelum pajak. Konsultasikan dengan konsultan pajak untuk perencanaan yang lebih akurat.'},{q:'Investasi mana yang paling cocok untuk saya?',a:'FincTools tidak memberikan rekomendasi investasi spesifik. Pilihan investasi tergantung tujuan, profil risiko, dan horizon waktu kamu. Konsultasikan dengan manajer investasi atau perencana keuangan berlisensi.'}]}
+      related={[{name:'DCA Simulator',href:'/investasi/dca-simulator',desc:'Simulasi investasi rutin dengan Dollar Cost Averaging'},{name:'Dividend Income Projector',href:'/investasi/dividend-income-projector',desc:'Proyeksi penghasilan pasif dari dividen saham'},{name:'SBN Maturity Planner',href:'/investasi/sbn-maturity-planner',desc:'Kalkulasi imbal hasil SBN hingga jatuh tempo'},{name:'Gold DCA Simulator',href:'/investasi/gold-dca-simulator',desc:'Simulasi DCA investasi emas per gram'}]}
+      references={['IDX. <em>Panduan Investasi di Pasar Modal.</em> <a href="https://idx.co.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">idx.co.id</a>','DJPPR. <em>Surat Berharga Negara.</em> <a href="https://djppr.kemenkeu.go.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">djppr.kemenkeu.go.id</a>','OJK. <em>Panduan Investasi.</em> <a href="https://ojk.go.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">ojk.go.id</a>']}
+    ><GoldDCASimulator /></InvestasiToolPage>
+  </main><Footer /></>)
+}
