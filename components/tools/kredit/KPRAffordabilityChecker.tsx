@@ -1,11 +1,71 @@
 'use client'
 import { useState } from 'react'
-import { hitungKPR } from '@/lib/calculations/property'
-import { analisaKPR } from '@/lib/analysis/kpr-analysis'
-import HasilAnalisa from '@/components/analysis/HasilAnalisa'
+import { CheckCircle, AlertTriangle, XCircle, ChevronRight } from 'lucide-react'
+import { hitungKPR, analisaKPR } from '@/lib/calculations/property'
 
 const fmt = (n: number) => 'Rp ' + Math.round(n).toLocaleString('id-ID')
 
+// ─── Komponen HasilAnalisa (inline) ───────────────────────────
+function HasilAnalisa({ hasil }: { hasil: ReturnType<typeof analisaKPR> }) {
+  const config = {
+    baik: {
+      wrap: 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800',
+      icon: CheckCircle,
+      iconCls: 'text-emerald-500',
+      diagCls: 'text-emerald-800 dark:text-emerald-300',
+      badge: 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300',
+      label: 'Kondisi Baik',
+    },
+    perhatian: {
+      wrap: 'bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800',
+      icon: AlertTriangle,
+      iconCls: 'text-amber-500',
+      diagCls: 'text-amber-800 dark:text-amber-300',
+      badge: 'bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300',
+      label: 'Perlu Perhatian',
+    },
+    buruk: {
+      wrap: 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800',
+      icon: XCircle,
+      iconCls: 'text-red-500',
+      diagCls: 'text-red-800 dark:text-red-300',
+      badge: 'bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300',
+      label: 'Perlu Tindakan',
+    },
+  }
+  const c = config[hasil.level]
+  const Icon = c.icon
+  return (
+    <div className={`rounded-xl border-2 ${c.wrap} overflow-hidden`}>
+      <div className={`flex items-center justify-between px-4 py-3 border-b ${c.wrap.split(' ').filter(x => x.includes('border')).join(' ')}`}>
+        <div className="flex items-center gap-2">
+          <Icon size={18} className={c.iconCls} />
+          <span className="text-sm font-bold text-[--text-primary]">Hasil Analisa</span>
+        </div>
+        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${c.badge}`}>{c.label}</span>
+      </div>
+      <div className="px-4 py-4 space-y-4">
+        <p className={`text-sm font-semibold leading-snug ${c.diagCls}`}>{hasil.diagnosa}</p>
+        <p className="text-sm text-[--text-secondary] leading-relaxed">{hasil.penjelasan}</p>
+        <div>
+          <p className="text-xs font-semibold text-[--text-secondary] uppercase tracking-wider mb-2">
+            Yang Bisa Kamu Lakukan
+          </p>
+          <ul className="space-y-2">
+            {hasil.rekomendasi.map((r, i) => (
+              <li key={i} className="flex items-start gap-2.5">
+                <ChevronRight size={14} className={`${c.iconCls} shrink-0 mt-0.5`} />
+                <span className="text-sm text-[--text-secondary] leading-relaxed">{r}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── Komponen Utama ───────────────────────────────────────────
 export default function KPRAffordabilityChecker() {
   const [ph,    setPh]    = useState(15_000_000)
   const [lain,  setLain]  = useState(2_000_000)
@@ -18,16 +78,7 @@ export default function KPRAffordabilityChecker() {
 
   const handleHitung = () => {
     const r = hitungKPR(ph, lain, rate, tenor, dp)
-    const a = analisaKPR({
-      penghasilanBersih: ph,
-      totalCicilanLain: lain,
-      bungaKPR: rate,
-      tenorTahun: tenor,
-      dpPersen: dp,
-      dtiRatio: r.dtiRatio,
-      maxHargaProperti: r.maxHargaProperti,
-      maxCicilanKPR: r.maxCicilanKPR,
-    })
+    const a = analisaKPR(ph, lain, rate, tenor, dp, r.dtiRatio, r.maxHargaProperti)
     setHasil(r)
     setAnalisa(a)
     setTimeout(() => {
@@ -41,8 +92,8 @@ export default function KPRAffordabilityChecker() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Input Form */}
+    <div className="space-y-5">
+      {/* Input */}
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label className="finc-label">Penghasilan Bersih/Bulan (Rp)</label>
@@ -77,24 +128,22 @@ export default function KPRAffordabilityChecker() {
         </div>
       </div>
 
-      {/* Tombol Submit */}
+      {/* Tombol */}
       <button onClick={handleHitung}
         className="w-full py-3.5 rounded-xl bg-finc-green hover:bg-emerald-600
-                   text-white font-semibold text-sm transition-all
-                   flex items-center justify-center gap-2 shadow-sm active:scale-[0.99]">
+                   text-white font-semibold text-sm transition-all shadow-sm active:scale-[0.99]">
         Hitung &amp; Analisa
       </button>
 
-      {/* Hasil — muncul setelah tombol ditekan */}
+      {/* Hasil */}
       {hasil && analisa && (
-        <div id="kpr-hasil" className="space-y-4 pt-2">
+        <div id="kpr-hasil" className="space-y-4 pt-1">
           <div className="flex items-center gap-3">
             <div className="flex-1 h-px bg-[--border]" />
             <span className="text-xs text-[--text-secondary] font-medium">Hasil Kalkulasi</span>
             <div className="flex-1 h-px bg-[--border]" />
           </div>
 
-          {/* Hasil Utama */}
           <div className={hasil.status === 'sehat' ? 'finc-result-good' : hasil.status === 'perhatian' ? 'finc-result-warn' : 'finc-result-danger'}>
             <p className="text-xs font-semibold uppercase tracking-wider text-[--text-secondary] mb-1">
               Harga Properti Maksimum
@@ -112,7 +161,6 @@ export default function KPRAffordabilityChecker() {
             </p>
           </div>
 
-          {/* Rincian */}
           <div className="finc-card space-y-3">
             {[
               ['Max Cicilan KPR/bulan', fmt(hasil.maxCicilanKPR)],
@@ -127,17 +175,14 @@ export default function KPRAffordabilityChecker() {
             ))}
           </div>
 
-          {/* Divider Hasil Analisa */}
           <div className="flex items-center gap-3">
             <div className="flex-1 h-px bg-[--border]" />
             <span className="text-xs text-[--text-secondary] font-medium">Hasil Analisa</span>
             <div className="flex-1 h-px bg-[--border]" />
           </div>
 
-          {/* Hasil Analisa */}
           <HasilAnalisa hasil={analisa} />
 
-          {/* Hitung Ulang */}
           <button onClick={handleReset}
             className="w-full py-2.5 rounded-xl border border-[--border]
                        text-[--text-secondary] text-sm font-medium
