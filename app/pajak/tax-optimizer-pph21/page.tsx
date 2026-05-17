@@ -1,1 +1,26 @@
-
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import PajakToolPage from '@/components/layout/PajakToolPage'
+import TaxOptimizerPPh21 from '@/components/tools/pajak/TaxOptimizerPPh21'
+export const metadata: Metadata = { title: 'Tax Optimizer PPh 21 | FincTools', description: 'Hitung PPh 21 bulanan karyawan berdasarkan tarif progresif UU HPP 2021. Lengkap dengan PTKP, biaya jabatan, dan rincian per layer.' }
+export default function Page() {
+  return (<><Header /><main className="mx-auto max-w-4xl px-4 py-8">
+    <nav className="flex items-center gap-1 text-xs text-[--text-secondary] mb-6"><Link href="/" className="hover:text-finc-green transition-colors">Home</Link><ChevronRight size={12}/><Link href="/pajak" className="hover:text-finc-green transition-colors">Pajak</Link><ChevronRight size={12}/><span className="text-[--text-primary] font-medium">Tax Optimizer PPh 21</span></nav>
+    <PajakToolPage name="Tax Optimizer PPh 21" subcategory="Pajak Karyawan"
+      description="Tax Optimizer PPh 21 menghitung pajak penghasilan karyawan secara akurat berdasarkan tarif progresif terbaru UU HPP No. 7 Tahun 2021. Lengkap rincian per layer tarif dan status PTKP."
+      steps={[{title:'Isi Gaji Pokok',desc:'Masukkan gaji pokok bulanan sebelum tunjangan dan potongan.'},{title:'Isi Tunjangan',desc:'Tunjangan tetap (rutin tiap bulan) dan tidak tetap (insidental) dimasukkan terpisah.'},{title:'Pilih Status PTKP',desc:'TK = Tidak Kawin, K = Kawin. Angka di belakang adalah jumlah tanggungan. Contoh: K/2 = kawin dengan 2 tanggungan.'},{title:'Status NPWP',desc:'Tanpa NPWP dikenakan tarif 20% lebih tinggi. Aktifkan toggle jika punya NPWP.'},{title:'Baca Hasilnya',desc:'Lihat PPh 21 per bulan, take home pay, dan rincian per layer tarif progresif.'}]}
+      formula={"PKP = ((Gaji Bruto - Biaya Jabatan) × 12) - PTKP\nBiaya Jabatan = 5% × Gaji Bruto, maks Rp 500.000/bulan\nPPh Tahunan = Tarif Progresif × PKP\nPPh Bulanan = PPh Tahunan ÷ 12"}
+      formulaExample={"Contoh: Gaji Rp 12.000.000 | TK/0\nBiaya Jabatan = Rp 500.000\nNeto/tahun   = Rp 138.000.000\nPKP          = 138.000.000 - 54.000.000 = Rp 84.000.000\nPPh = (5%×60jt) + (15%×24jt) = Rp 6.600.000/thn\nPPh/bulan = Rp 550.000"}
+      variables={[{name:'PTKP',desc:'Penghasilan Tidak Kena Pajak — batas bebas pajak per tahun'},{name:'PKP',desc:'Penghasilan Kena Pajak = Neto Tahunan - PTKP'},{name:'Biaya Jabatan',desc:'Pengurang 5% dari bruto, maks Rp 500.000/bulan'},{name:'Tarif',desc:'0–60jt: 5% | 60–250jt: 15% | 250–500jt: 25% | 500jt–5M: 30% | >5M: 35%'}]}
+      history={"PPh 21 adalah pajak atas penghasilan karyawan yang telah menjadi bagian sistem perpajakan Indonesia sejak UU PPh 1983. Kewajiban pemotongan dilakukan oleh pemberi kerja setiap bulan.\n\nPerubahan signifikan terakhir melalui UU HPP No. 7 Tahun 2021 yang menambahkan lapisan tarif baru 35% untuk penghasilan di atas Rp 5 miliar, berlaku mulai tahun pajak 2022.\n\nPTKP terakhir diperbarui melalui PMK No. 101/PMK.010/2016: Rp 54 juta untuk TK/0 dengan tambahan Rp 4,5 juta untuk status kawin dan setiap tanggungan (maksimal 3 orang)."}
+      interpretation={[{range:'TK/0',label:'Tidak Kawin, 0 tanggungan',desc:'PTKP Rp 54.000.000/tahun'},{range:'K/0',label:'Kawin, 0 tanggungan',desc:'PTKP Rp 58.500.000/tahun'},{range:'K/1',label:'Kawin, 1 tanggungan',desc:'PTKP Rp 63.000.000/tahun'},{range:'K/2',label:'Kawin, 2 tanggungan',desc:'PTKP Rp 67.500.000/tahun'},{range:'K/3',label:'Kawin, 3 tanggungan (maks)',desc:'PTKP Rp 72.000.000/tahun'}]}
+      interpretationTitle="Panduan Status PTKP"
+      faqs={[{q:'Apa itu biaya jabatan?',a:'Biaya jabatan adalah pengurang penghasilan sebesar 5% dari bruto, maksimum Rp 500.000/bulan. Semua karyawan berhak mendapatkan pengurang ini — bukan hanya jabatan manajerial.'},{q:'Apa dampak tidak punya NPWP?',a:'Tarif PPh 21 lebih tinggi 20% dari tarif normal. Misalnya tarif 5% menjadi 6%, tarif 15% menjadi 18%, dan seterusnya.'},{q:'Apakah THR dihitung dalam PPh 21?',a:'Ya, THR dimasukkan ke penghasilan tahunan. Gunakan THR Tax Planner untuk menghitung pajak THR secara spesifik.'},{q:'Mengapa hasil berbeda dari slip gaji?',a:'Kemungkinan ada komponen berbeda seperti BPJS atau tunjangan dengan perlakuan khusus. Konsultasikan dengan HRD untuk angka yang presisi.'},{q:'Kapan batas bayar PPh 21?',a:'PPh 21 karyawan dipotong langsung oleh pemberi kerja dan disetor paling lambat tanggal 10 bulan berikutnya. Karyawan tidak perlu menyetor sendiri.'}]}
+      related={[{name:'THR Tax Planner',href:'/pajak/thr-tax-planner',desc:'Hitung pajak THR dan berapa yang kamu terima bersih'},{name:'Freelancer Tax Estimator',href:'/pajak/freelancer-tax-estimator',desc:'Estimasi pajak untuk pekerja lepas dan konsultan'},{name:'Investment Tax Report',href:'/pajak/investment-tax-report-generator',desc:'Hitung pajak dari penghasilan investasi'},{name:'Zakat & Tax Planner',href:'/pajak/zakat-tax-planner',desc:'Kalkulasi zakat penghasilan bersamaan dengan perencanaan pajak'}]}
+      references={['UU HPP No. 7 Tahun 2021 — Harmonisasi Peraturan Perpajakan','PMK No. 168/PMK.010/2023 — Tarif Efektif PPh 21','DJP. <em>Panduan PPh 21.</em> <a href="https://www.pajak.go.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">pajak.go.id</a>']}
+    ><TaxOptimizerPPh21 /></PajakToolPage>
+  </main><Footer /></>)
+}
