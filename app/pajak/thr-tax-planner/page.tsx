@@ -1,1 +1,22 @@
-
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import PajakToolPage from '@/components/layout/PajakToolPage'
+import THRTaxPlanner from '@/components/tools/pajak/THRTaxPlanner'
+export const metadata: Metadata = { title: 'THR Tax Planner | FincTools', description: 'Hitung pajak yang dipotong dari THR dan berapa jumlah bersih yang akan kamu terima.' }
+export default function Page() {
+  return (<><Header /><main className="mx-auto max-w-4xl px-4 py-8">
+    <nav className="flex items-center gap-1 text-xs text-[--text-secondary] mb-6"><Link href="/" className="hover:text-finc-green transition-colors">Home</Link><ChevronRight size={12}/><Link href="/pajak" className="hover:text-finc-green transition-colors">Pajak</Link><ChevronRight size={12}/><span className="text-[--text-primary] font-medium">THR Tax Planner</span></nav>
+    <PajakToolPage name="THR Tax Planner" description="Hitung pajak yang dipotong dari THR dan berapa jumlah bersih yang akan kamu terima."
+      steps={[{title:'Isi semua field input',desc:'Masukkan data keuangan kamu pada setiap field yang tersedia.'},{title:'Sesuaikan parameter',desc:'Ubah nilai sesuai kondisi aktual kamu — hasil berubah secara real-time.'},{title:'Baca hasilnya',desc:'Hasil kalkulasi ditampilkan lengkap dengan rincian per komponen.'},{title:'Gunakan sebagai referensi',desc:'Hasil ini adalah estimasi. Untuk pelaporan pajak resmi konsultasikan dengan konsultan pajak berlisensi atau kantor pajak.'}]}
+      formula="Semua kalkulasi menggunakan formula sesuai peraturan perpajakan Indonesia yang berlaku."
+      variables={[{name:'Input',desc:'Semua field input disesuaikan dengan kebutuhan spesifik tool ini'},{name:'Output',desc:'Hasil kalkulasi berdasarkan ketentuan perpajakan Indonesia terkini'}]}
+      history={"Tool ini didasarkan pada peraturan perpajakan Indonesia yang berlaku, termasuk UU HPP No. 7 Tahun 2021 dan peraturan turunannya dari Direktorat Jenderal Pajak (DJP).\n\nPerpajakan Indonesia menggunakan sistem self-assessment di mana wajib pajak menghitung, membayar, dan melaporkan kewajiban pajaknya sendiri. Tools FincTools membantu proses estimasi awal sebelum konsultasi lebih lanjut.\n\nSelalu cek regulasi terbaru di website resmi DJP (pajak.go.id) karena ketentuan pajak dapat berubah setiap tahun anggaran."}
+      faqs={[{q:'Apakah hasil kalkulasi ini bisa langsung digunakan untuk laporan pajak?',a:'Tidak langsung. Tool ini memberikan estimasi untuk perencanaan. Untuk pelaporan pajak resmi di SPT, gunakan angka dari bukti potong (1721-A1 untuk karyawan) atau konsultasikan dengan konsultan pajak berlisensi.'},{q:'Seberapa akurat hasil kalkulasi ini?',a:'Akurat secara formula berdasarkan regulasi yang berlaku. Namun setiap kasus pajak bisa memiliki kondisi khusus (penghasilan luar negeri, natura, dll) yang memerlukan perlakuan berbeda.'},{q:'Apakah ada perubahan tarif pajak yang perlu saya ketahui?',a:'UU HPP 2021 adalah perubahan terbesar terakhir. FincTools akan memperbarui formula setiap ada perubahan regulasi. Pantau update di halaman ini atau berlangganan newsletter kami.'},{q:'Di mana saya bisa mendapatkan bantuan pajak resmi?',a:'Kunjungi kantor pajak (KPP) terdekat, hubungi Kring Pajak 1500200, atau akses layanan online di pajak.go.id. Untuk kasus kompleks, gunakan jasa konsultan pajak terdaftar di IKPI atau PERTAPSI.'}]}
+      related={[{name:'Tax Optimizer PPh 21',href:'/pajak/tax-optimizer-pph21',desc:'Hitung PPh 21 karyawan bulanan secara lengkap'},{name:'THR Tax Planner',href:'/pajak/thr-tax-planner',desc:'Hitung pajak yang dipotong dari THR'},{name:'UMKM Tax Estimator',href:'/pajak/umkm-tax-estimator',desc:'Estimasi PPh Final 0.5% untuk pelaku UMKM'},{name:'PPN Tracker',href:'/pajak/ppn-tracker',desc:'Kalkulasi PPN 11% untuk transaksi bisnis'}]}
+      references={['UU HPP No. 7 Tahun 2021 — Harmonisasi Peraturan Perpajakan','DJP. <em>Peraturan & Ketentuan Perpajakan.</em> <a href="https://www.pajak.go.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">pajak.go.id</a>','BAZNAS. <em>Panduan Zakat.</em> <a href="https://baznas.go.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">baznas.go.id</a>']}
+    ><THRTaxPlanner /></PajakToolPage>
+  </main><Footer /></>)
+}
