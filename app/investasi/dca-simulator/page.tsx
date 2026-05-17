@@ -1,1 +1,26 @@
-
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import InvestasiToolPage from '@/components/layout/InvestasiToolPage'
+import DCASimulator from '@/components/tools/investasi/DCASimulator'
+export const metadata: Metadata = { title: 'DCA Simulator | FincTools', description: 'Simulasi Dollar Cost Averaging untuk reksa dana, saham, emas. Hitung nilai akhir, keuntungan, dan CAGR secara real-time.' }
+export default function Page() {
+  return (<><Header /><main className="mx-auto max-w-4xl px-4 py-8">
+    <nav className="flex items-center gap-1 text-xs text-[--text-secondary] mb-6"><Link href="/" className="hover:text-finc-green transition-colors">Home</Link><ChevronRight size={12}/><Link href="/investasi" className="hover:text-finc-green transition-colors">Investasi</Link><ChevronRight size={12}/><span className="text-[--text-primary] font-medium">DCA Simulator</span></nav>
+    <InvestasiToolPage name="DCA Simulator" subcategory="Strategi Investasi"
+      description="DCA Simulator menghitung pertumbuhan investasi dengan strategi Dollar Cost Averaging — investasi rutin dengan jumlah tetap tanpa perlu menebak timing pasar."
+      steps={[{title:'Pilih Frekuensi Investasi',desc:'Bulanan (paling umum), mingguan, atau tahunan sesuai jadwal penghasilanmu.'},{title:'Isi Jumlah Investasi',desc:'Berapa yang diinvestasikan setiap periode. Konsistensi adalah kunci DCA.'},{title:'Set Durasi',desc:'Berapa bulan kamu berencana investasi. Minimal 12 bulan untuk melihat efek compound.'},{title:'Estimasi Return Tahunan',desc:'Return historis reksa dana saham Indonesia 12–18%/tahun. Gunakan angka konservatif untuk perencanaan.'},{title:'Baca Proyeksi',desc:'Nilai akhir, keuntungan, CAGR, dan tabel pertumbuhan per tahun.'}]}
+      formula={"Nilai Akhir = PMT × ((1+r)^n - 1) / r × (1+r)\nr = Return per periode (return tahunan / 12)\nn = Jumlah periode\nCAGR = (Nilai Akhir / Total Investasi)^(1/tahun) - 1"}
+      formulaExample={"Rp 1.000.000/bulan | 36 bulan | return 15%/tahun\nr = 15%/12 = 1.25%/bulan\nNilai Akhir ≈ Rp 43.100.000\nKeuntungan ≈ Rp 7.100.000 (+19.7%)"}
+      variables={[{name:'PMT',desc:'Jumlah investasi tetap setiap periode'},{name:'r',desc:'Return per periode = return tahunan ÷ frekuensi'},{name:'n',desc:'Total jumlah periode investasi'},{name:'CAGR',desc:'Compound Annual Growth Rate — return tahunan yang disetarakan'}]}
+      history={"Dollar Cost Averaging dipopulerkan Benjamin Graham dalam The Intelligent Investor (1949) sebagai cara sistematis berinvestasi tanpa menebak timing pasar.\n\nStrategi ini bekerja karena saat harga turun, jumlah aset yang dibeli lebih banyak. Saat harga naik, lebih sedikit. Hasilnya adalah harga rata-rata beli yang lebih rendah dari rata-rata harga pasar.\n\nWarren Buffett merekomendasikan DCA ke investor ritel: investasi konsisten di reksa dana indeks berbiaya rendah setiap bulan selama minimal 10 tahun akan mengalahkan mayoritas manajer investasi profesional."}
+      interpretation={[{range:'Return < 8%',label:'Konservatif',desc:'Deposito, obligasi, reksa dana pasar uang'},{range:'Return 8–12%',label:'Moderat',desc:'Reksa dana campuran, obligasi korporasi'},{range:'Return 12–18%',label:'Growth',desc:'Reksa dana saham Indonesia (historis)'},{range:'Return > 18%',label:'Agresif',desc:'Saham individual — volatilitas sangat tinggi'}]}
+      interpretationTitle="Panduan Estimasi Return"
+      faqs={[{q:'DCA vs lump sum, mana yang lebih baik?',a:'Penelitian menunjukkan lump sum mengalahkan DCA 66% waktu karena pasar cenderung naik. Namun DCA lebih realistis karena kebanyakan orang menerima penghasilan berkala — dan memastikan investasi terjadi secara disiplin.'},{q:'Return berapa yang realistis?',a:'Reksa dana saham Indonesia historis 12–18%/tahun, tapi sangat bervariasi. Untuk perencanaan konservatif gunakan 10–12%. Jangan gunakan di atas 20% kecuali punya data historis yang kuat.'},{q:'Seberapa penting konsistensi dalam DCA?',a:'Sangat penting. Kekuatan DCA adalah disiplin investasi rutin tanpa mempertimbangkan kondisi pasar. Lewat satu bulan tidak masalah, tapi jangan berhenti total saat pasar turun — justru itulah saat terbaik untuk DCA.'},{q:'DCA cocok untuk instrumen apa saja?',a:'Reksa dana, saham, ETF, emas, bahkan kripto. Tool ini bisa dipakai untuk menghitung estimasi return apapun, asal kamu punya estimasi return tahunan yang realistis untuk instrumen tersebut.'}]}
+      related={[{name:'Gold DCA Simulator',href:'/investasi/gold-dca-simulator',desc:'Versi DCA khusus untuk emas dengan kalkulasi per gram'},{name:'DRIP Simulator',href:'/investasi/drip-simulator',desc:'Simulasi reinvestasi dividen saham secara otomatis'},{name:'Dividend Income Projector',href:'/investasi/dividend-income-projector',desc:'Proyeksi penghasilan pasif dari dividen portofolio saham'},{name:'Wealth Freedom Planner',href:'/personal-finance/wealth-freedom-planner',desc:'Hitung angka FIRE dan berapa yang perlu diinvestasikan'}]}
+      references={['Graham, B. (1949). <em>The Intelligent Investor.</em> Harper & Brothers.','Siegel, J.J. (2014). <em>Stocks for the Long Run.</em> McGraw-Hill.','OJK. <em>Panduan Reksa Dana.</em> <a href="https://ojk.go.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">ojk.go.id</a>']}
+    ><DCASimulator /></InvestasiToolPage>
+  </main><Footer /></>)
+}
