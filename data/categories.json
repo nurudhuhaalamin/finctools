@@ -1,1 +1,129 @@
-
+[
+  {
+    "id": "personal-finance",
+    "name": "Personal Finance",
+    "slug": "personal-finance",
+    "description": "Rencanakan keuangan pribadi dengan cermat",
+    "icon": "Wallet",
+    "color": "blue",
+    "toolCount": 8,
+    "tools": [
+      { "name": "Wealth Freedom Planner", "slug": "wealth-freedom-planner", "description": "Hitung angka FIRE untuk kebebasan finansial" },
+      { "name": "Emergency Shield Builder", "slug": "emergency-shield-builder", "description": "Kalkulasi dana darurat ideal" },
+      { "name": "Inflation Guard", "slug": "inflation-guard", "description": "Proyeksi daya beli di masa depan" },
+      { "name": "Budget Architect", "slug": "budget-architect", "description": "Alokasi budget dengan aturan 50-30-20" },
+      { "name": "Debt Destroyer", "slug": "debt-destroyer", "description": "Strategi pelunasan utang tercepat" },
+      { "name": "Net Worth Tracker", "slug": "net-worth-tracker", "description": "Kalkulasi kekayaan bersih kamu" },
+      { "name": "Savings Growth Simulator", "slug": "savings-growth-simulator", "description": "Proyeksi tabungan dengan bunga majemuk" },
+      { "name": "Goal Achiever Planner", "slug": "goal-achiever-planner", "description": "Hitung tabungan per bulan untuk tujuan tertentu" }
+    ]
+  },
+  {
+    "id": "kredit-properti",
+    "name": "Kredit & Properti",
+    "slug": "kredit-properti",
+    "description": "Analisis pinjaman dan investasi properti",
+    "icon": "Home",
+    "color": "orange",
+    "toolCount": 6,
+    "tools": [
+      { "name": "Loan True Cost Analyzer", "slug": "loan-true-cost-analyzer", "description": "Total biaya pinjaman flat vs efektif" },
+      { "name": "Refinancing Decision Tool", "slug": "refinancing-decision-tool", "description": "Analisis kelayakan refinancing" },
+      { "name": "Buy vs Rent Analyzer", "slug": "buy-vs-rent-analyzer", "description": "Perbandingan beli vs sewa properti" },
+      { "name": "KPR Affordability Checker", "slug": "kpr-affordability-checker", "description": "Kemampuan cicilan KPR berdasarkan penghasilan" },
+      { "name": "Rental Yield Analyzer", "slug": "rental-yield-analyzer", "description": "Kalkulasi yield investasi properti sewa" },
+      { "name": "Property Investment Analyzer", "slug": "property-investment-analyzer", "description": "ROI investasi properti komprehensif" }
+    ]
+  },
+  {
+    "id": "pajak",
+    "name": "Pajak",
+    "slug": "pajak",
+    "description": "Estimasi dan optimasi kewajiban pajak",
+    "icon": "FileText",
+    "color": "purple",
+    "toolCount": 7,
+    "tools": [
+      { "name": "Tax Optimizer PPh 21", "slug": "tax-optimizer-pph21", "description": "Kalkulasi PPh 21 karyawan" },
+      { "name": "THR Tax Planner", "slug": "thr-tax-planner", "description": "Kalkulasi pajak THR" },
+      { "name": "Freelancer Tax Estimator", "slug": "freelancer-tax-estimator", "description": "Estimasi pajak penghasilan freelancer" },
+      { "name": "Investment Tax Report Generator", "slug": "investment-tax-report-generator", "description": "Estimasi pajak keuntungan investasi" },
+      { "name": "Zakat & Tax Planner", "slug": "zakat-tax-planner", "description": "Kalkulasi zakat mal dan penghasilan" },
+      { "name": "UMKM Tax Estimator", "slug": "umkm-tax-estimator", "description": "PPh final UMKM 0.5% dari omzet" },
+      { "name": "PPN Tracker", "slug": "ppn-tracker", "description": "Kalkulasi PPN masukan dan keluaran" }
+    ]
+  },
+  {
+    "id": "investasi",
+    "name": "Investasi",
+    "slug": "investasi",
+    "description": "Simulasi dan analisis strategi investasi",
+    "icon": "TrendingUp",
+    "color": "emerald",
+    "toolCount": 8,
+    "tools": [
+      { "name": "DCA Simulator", "slug": "dca-simulator", "description": "Simulasi strategi Dollar Cost Averaging" },
+      { "name": "SBN Maturity Planner", "slug": "sbn-maturity-planner", "description": "Imbal hasil SBN hingga jatuh tempo" },
+      { "name": "Coupon Income Planner", "slug": "coupon-income-planner", "description": "Proyeksi penghasilan dari kupon obligasi" },
+      { "name": "Bond Yield Analyzer", "slug": "bond-yield-analyzer", "description": "Kalkulasi yield obligasi" },
+      { "name": "Gold DCA Simulator", "slug": "gold-dca-simulator", "description": "Simulasi DCA investasi emas" },
+      { "name": "Gold vs Inflation Analyzer", "slug": "gold-vs-inflation-analyzer", "description": "Perbandingan return emas vs inflasi" },
+      { "name": "Dividend Income Projector", "slug": "dividend-income-projector", "description": "Proyeksi penghasilan dividen tahunan" },
+      { "name": "DRIP Simulator", "slug": "drip-simulator", "description": "Simulasi reinvestasi dividen (DRIP)" }
+    ]
+  },
+  {
+    "id": "saham",
+    "name": "Saham",
+    "slug": "saham",
+    "description": "Strategi beli saham yang terukur",
+    "icon": "BarChart2",
+    "color": "indigo",
+    "toolCount": 3,
+    "tools": [
+      { "name": "Averaging Strategy Builder", "slug": "averaging-strategy-builder", "description": "Kalkulasi average down dan average up" },
+      { "name": "Entry Price Optimizer", "slug": "entry-price-optimizer", "description": "Titik entry optimal berdasarkan risiko" },
+      { "name": "Break-even Analyzer", "slug": "break-even-analyzer", "description": "Harga break-even setelah biaya transaksi" }
+    ]
+  },
+  {
+    "id": "trading",
+    "name": "Trading",
+    "slug": "trading",
+    "description": "Manajemen risiko dan analisis performa",
+    "icon": "Activity",
+    "color": "red",
+    "toolCount": 13,
+    "tools": [
+      { "name": "Risk Manager", "slug": "risk-manager", "description": "Position sizing berdasarkan risiko per trade" },
+      { "name": "Trade Analyzer", "slug": "trade-analyzer", "description": "Analisis Risk/Reward ratio" },
+      { "name": "Stop Loss Optimizer", "slug": "stop-loss-optimizer", "description": "Penentuan level stop loss optimal" },
+      { "name": "Max Loss Guardian", "slug": "max-loss-guardian", "description": "Batas kerugian harian dan mingguan" },
+      { "name": "Trading Performance Analyzer", "slug": "trading-performance-analyzer", "description": "Analisis statistik performa trading" },
+      { "name": "Win Rate & Expectancy Tracker", "slug": "win-rate-expectancy-tracker", "description": "Kalkulasi expectancy strategi trading" },
+      { "name": "Drawdown Recovery Planner", "slug": "drawdown-recovery-planner", "description": "Recovery plan setelah drawdown" },
+      { "name": "Pip & Profit Analyzer", "slug": "pip-profit-analyzer", "description": "Kalkulasi nilai pip dan profit/loss" },
+      { "name": "Margin & Leverage Guard", "slug": "margin-leverage-guard", "description": "Kalkulasi kebutuhan margin dan leverage" },
+      { "name": "Swap Cost Estimator", "slug": "swap-cost-estimator", "description": "Estimasi biaya swap dan rollover" },
+      { "name": "Kelly Criterion Optimizer", "slug": "kelly-criterion-optimizer", "description": "Position sizing berbasis probabilitas Kelly" },
+      { "name": "Probability of Ruin Analyzer", "slug": "probability-of-ruin-analyzer", "description": "Probabilitas bangkrut berdasarkan statistik" },
+      { "name": "Streak Analyzer", "slug": "streak-analyzer", "description": "Probabilitas serial win/loss beruntun" }
+    ]
+  },
+  {
+    "id": "kripto",
+    "name": "Kripto",
+    "slug": "kripto",
+    "description": "Tools khusus aset kripto",
+    "icon": "Coins",
+    "color": "yellow",
+    "toolCount": 5,
+    "tools": [
+      { "name": "Crypto DCA Simulator", "slug": "crypto-dca-simulator", "description": "Simulasi DCA aset kripto" },
+      { "name": "Staking Reward Projector", "slug": "staking-reward-projector", "description": "Proyeksi reward staking" },
+      { "name": "Crypto Risk Manager", "slug": "crypto-risk-manager", "description": "Position sizing untuk trading kripto" },
+      { "name": "Liquidation Price Analyzer", "slug": "liquidation-price-analyzer", "description": "Kalkulasi harga likuidasi futures" },
+      { "name": "Funding Rate Cost Estimator", "slug": "funding-rate-cost-estimator", "description": "Estimasi biaya funding rate" }
+    ]
+  }
+]
