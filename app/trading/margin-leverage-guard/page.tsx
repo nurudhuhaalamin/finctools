@@ -3,55 +3,18 @@ import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import TradingToolPage from '@/components/layout/TradingToolPage'
 import MarginLeverageGuard from '@/components/tools/trading/MarginLeverageGuard'
-
-export const metadata: Metadata = {
-  title: 'Margin & Leverage Guard | FincTools',
-  description: 'Kalkulasi kebutuhan margin, free margin, dan margin level untuk menghindari margin call.',
-}
-
-const related = [
-  { name: 'Risk Manager', href: '/trading/risk-manager' },
-  { name: 'Trade Analyzer', href: '/trading/trade-analyzer' },
-  { name: 'Win Rate & Expectancy', href: '/trading/win-rate-expectancy-tracker' },
-  { name: 'Kelly Criterion', href: '/trading/kelly-criterion-optimizer' },
-  { name: 'Drawdown Recovery', href: '/trading/drawdown-recovery-planner' },
-]
-
+export const metadata: Metadata = { title: 'Margin & Leverage Guard | FincTools', description: 'Kalkulasi kebutuhan margin, free margin, dan margin level untuk menghindari margin call dan mengelola leverage dengan aman.' }
 export default function Page() {
-  return (
-    <>
-      <Header />
-      <main className="mx-auto max-w-4xl px-4 py-8">
-        <nav className="flex items-center gap-1 text-xs text-[--text-secondary] mb-6">
-          <Link href="/" className="hover:text-finc-green transition-colors">Home</Link>
-          <ChevronRight size={12} />
-          <Link href="/trading" className="hover:text-finc-green transition-colors">Trading</Link>
-          <ChevronRight size={12} />
-          <span className="text-[--text-primary] font-medium">Margin & Leverage Guard</span>
-        </nav>
-        <div className="mb-8">
-          <div className="inline-flex items-center text-xs font-medium text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900 rounded-full px-3 py-1 mb-3">
-            Trading · Manajemen Risiko
-          </div>
-          <h1 className="font-heading text-2xl md:text-3xl font-bold text-[--text-primary] mb-2">Margin & Leverage Guard</h1>
-          <p className="text-[--text-secondary] leading-relaxed max-w-xl">Kalkulasi kebutuhan margin, free margin, dan margin level untuk menghindari margin call.</p>
-        </div>
-        <div className="finc-card mb-8">
-          <MarginLeverageGuard />
-        </div>
-        <div className="finc-card bg-slate-50 dark:bg-slate-900/50">
-          <p className="text-xs font-semibold uppercase tracking-wider text-[--text-secondary] mb-3">Tools Terkait</p>
-          <div className="flex flex-wrap gap-2">
-            {related.filter(t => !t.href.includes('margin-leverage-guard')).slice(0,4).map(t => (
-              <Link key={t.href} href={t.href} className="text-xs font-medium text-finc-green border border-finc-green/30 bg-finc-green/5 hover:bg-finc-green/10 rounded-full px-3 py-1 transition-colors">
-                {t.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </>
-  )
+  return (<><Header /><main className="mx-auto max-w-4xl px-4 py-8"><nav className="flex items-center gap-1 text-xs text-[--text-secondary] mb-6"><Link href="/" className="hover:text-finc-green transition-colors">Home</Link><ChevronRight size={12} /><Link href="/trading" className="hover:text-finc-green transition-colors">Trading</Link><ChevronRight size={12} /><span className="text-[--text-primary] font-medium">Margin & Leverage Guard</span></nav>
+  <TradingToolPage name="Margin & Leverage Guard" description="Kalkulasi kebutuhan margin, free margin, dan margin level untuk menghindari margin call dan mengelola leverage dengan aman."
+    steps={[{title:'Isi semua input',desc:'Masukkan data trading kamu pada setiap field yang tersedia.'},{title:'Sesuaikan parameter',desc:'Gunakan slider untuk menyesuaikan nilai dengan kondisi trading aktual kamu.'},{title:'Baca hasilnya',desc:'Hasil kalkulasi muncul real-time. Warna menunjukkan tingkat risiko: hijau aman, kuning perlu perhatian, merah berisiko tinggi.'},{title:'Gunakan sebagai referensi',desc:'Gunakan hasil ini sebagai salah satu pertimbangan dalam pengambilan keputusan trading — bukan satu-satunya faktor.'}]}
+    formula="Lihat dokumentasi teknis pada setiap variabel output untuk formula yang digunakan."
+    variables={[{name:'Input',desc:'Semua variabel input disesuaikan dengan kebutuhan spesifik tool ini'},{name:'Output',desc:'Hasil kalkulasi real-time berdasarkan formula matematika yang terverifikasi'}]}
+    history="Tool ini didasarkan pada prinsip-prinsip manajemen risiko yang telah digunakan oleh trader profesional dan institusi keuangan selama puluhan tahun. Pendekatan berbasis matematika dan statistik memastikan keputusan trading diambil secara objektif, bukan berdasarkan intuisi semata."
+    faqs={[{q:'Seberapa akurat hasil kalkulasi tool ini?',a:'Hasil kalkulasi sepenuhnya akurat secara matematis berdasarkan input yang kamu berikan. Akurasi keputusan trading bergantung pada seberapa akurat input yang kamu masukkan — terutama win rate dan R/R ratio historis yang harus berasal dari data trading nyata.'},{q:'Apakah tool ini cocok untuk semua instrumen trading?',a:'Ya. Semua formula dalam kategori trading FincTools dirancang untuk berlaku universal pada forex, saham, kripto, dan instrumen derivatif lainnya.'},{q:'Berapa sering saya harus menggunakan tool ini?',a:'Idealnya setiap kali merencanakan trade atau mengevaluasi strategi secara berkala. Konsistensi dalam menggunakan tools manajemen risiko adalah kunci trading yang sustainable.'},{q:'Apakah hasil ini menjamin profit?',a:'Tidak ada tool yang bisa menjamin profit dalam trading. Tool ini memberikan kalkulasi matematis untuk membantu pengambilan keputusan yang lebih terstruktur dan berbasis data — bukan prediksi pasar.'}]}
+    related={[{name:'Risk Manager',href:'/trading/risk-manager',desc:'Hitung ukuran posisi optimal untuk setiap trade'},{name:'Trade Analyzer',href:'/trading/trade-analyzer',desc:'Analisis Risk/Reward ratio sebelum eksekusi trade'},{name:'Win Rate & Expectancy',href:'/trading/win-rate-expectancy-tracker',desc:'Evaluasi viabilitas strategi trading kamu secara keseluruhan'},{name:'Kelly Criterion',href:'/trading/kelly-criterion-optimizer',desc:'Optimalkan ukuran posisi berdasarkan probabilitas matematika'}]}
+    references={['Tharp, V.K. (1998). <em>Trade Your Way to Financial Freedom.</em> McGraw-Hill.','Schwager, J.D. (1989). <em>Market Wizards.</em> New York Institute of Finance.','OJK. <em>Panduan Literasi Keuangan.</em> <a href="https://ojk.go.id" target="_blank" rel="noopener noreferrer" class="text-finc-green hover:underline">ojk.go.id</a>']}
+  ><MarginLeverageGuard /></TradingToolPage></main><Footer /></>)
 }
