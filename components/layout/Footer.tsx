@@ -10,11 +10,23 @@ const toolLinks = [
   { name: 'Kripto',            href: '/kripto'           },
 ]
 
+const artikelLinks = [
+  { name: 'Investasi',        href: '/artikel/investasi'        },
+  { name: 'Saham & Bursa',    href: '/artikel/saham-bursa'      },
+  { name: 'Trading',          href: '/artikel/trading'          },
+  { name: 'Pajak',            href: '/artikel/pajak'            },
+  { name: 'Keuangan Pribadi', href: '/artikel/keuangan-pribadi' },
+  { name: 'Kripto',           href: '/artikel/kripto'           },
+  { name: 'Ekonomi & Pasar',  href: '/artikel/ekonomi-pasar'   },
+]
+
 const legalLinks = [
   { name: 'Privacy Policy', href: '/privacy-policy' },
   { name: 'Terms of Use',   href: '/terms-of-use'   },
   { name: 'Disclaimer',     href: '/disclaimer'     },
   { name: 'Cookie Policy',  href: '/cookie-policy'  },
+  { name: 'About',          href: '/about'          },
+  { name: 'Contact',        href: '/contact'        },
 ]
 
 export default function Footer() {
@@ -22,7 +34,6 @@ export default function Footer() {
     <footer className="border-t border-[--border] bg-[--surface] mt-16">
       <div className="mx-auto max-w-6xl px-4 py-10">
 
-        {/* ── Top ── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
 
           {/* Brand */}
@@ -32,7 +43,7 @@ export default function Footer() {
               <span className="font-heading font-800 text-base text-finc-green">Tools</span>
             </div>
             <p className="text-sm text-[--text-secondary] leading-relaxed max-w-[200px]">
-              Tools keuangan & investasi berbasis kalkulasi matematika. Gratis, akurat, tanpa iklan mengganggu.
+              46 tools keuangan & investasi gratis. Berbasis kalkulasi matematika, tanpa perlu akun.
             </p>
           </div>
 
@@ -40,7 +51,7 @@ export default function Footer() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-[--text-secondary] mb-3">Tools</p>
             <ul className="space-y-2">
-              {toolLinks.map((l) => (
+              {toolLinks.map(l => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">
                     {l.name}
@@ -50,14 +61,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Panduan */}
+          {/* Artikel */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[--text-secondary] mb-3">Panduan</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-[--text-secondary] mb-3">Artikel</p>
             <ul className="space-y-2">
-              <li><Link href="/panduan" className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">Semua Artikel</Link></li>
-              <li><Link href="/panduan/trading" className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">Panduan Trading</Link></li>
-              <li><Link href="/panduan/investasi" className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">Panduan Investasi</Link></li>
-              <li><Link href="/panduan/pajak" className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">Panduan Pajak</Link></li>
+              <li>
+                <Link href="/artikel" className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors font-medium">
+                  Semua Artikel
+                </Link>
+              </li>
+              {artikelLinks.map(l => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">
+                    {l.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -65,20 +84,18 @@ export default function Footer() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-[--text-secondary] mb-3">Legal</p>
             <ul className="space-y-2">
-              {legalLinks.map((l) => (
+              {legalLinks.map(l => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">
                     {l.name}
                   </Link>
                 </li>
               ))}
-              <li><Link href="/about"   className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">About</Link></li>
-              <li><Link href="/contact" className="text-sm text-[--text-secondary] hover:text-finc-green transition-colors">Contact</Link></li>
             </ul>
           </div>
         </div>
 
-        {/* ── Disclaimer ── */}
+        {/* Disclaimer */}
         <div className="border-t border-[--border] pt-6">
           <p className="text-xs text-[--text-secondary] leading-relaxed mb-4">
             ⚠️ <strong>Disclaimer:</strong> Seluruh tools dan konten di FincTools hanya untuk tujuan edukasi dan kalkulasi.
