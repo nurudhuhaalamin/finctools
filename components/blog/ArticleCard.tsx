@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { Clock, TrendingUp, BarChart2, FileText, Wallet, Home, Bitcoin, Globe } from 'lucide-react'
+import { Clock, TrendingUp, BarChart2, FileText, Wallet, Bitcoin, Globe, Activity } from 'lucide-react'
 import type { Artikel, KategoriArtikel } from '@/lib/blog/types'
 import { kategoriConfig } from '@/lib/blog/types'
 
@@ -12,10 +12,9 @@ interface ArticleCardProps {
 const ikonKategori: Record<KategoriArtikel, React.ElementType> = {
   investasi: TrendingUp,
   'saham-bursa': BarChart2,
-  trading: TrendingUp,
+  trading: Activity,
   pajak: FileText,
   'keuangan-pribadi': Wallet,
-  properti: Home,
   kripto: Bitcoin,
   'ekonomi-pasar': Globe,
 }
@@ -34,36 +33,27 @@ export default function ArticleCard({ artikel, showKategori = true }: ArticleCar
   return (
     <Link href={href} className="group block rounded-xl overflow-hidden border border-[--border]
                                   hover:border-finc-green/40 hover:shadow-lg transition-all duration-200">
-      {/* Gradient Cover / Thumbnail */}
       <div className={`relative h-32 bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo}
                        flex items-center justify-center overflow-hidden`}>
-        {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-2 right-2 w-16 h-16 rounded-full border-2 border-white" />
           <div className="absolute bottom-2 left-2 w-8 h-8 rounded-full border border-white" />
-          <div className="absolute top-1/2 left-1/4 w-12 h-12 rounded-full border border-white opacity-50" />
         </div>
-        {/* Icon */}
         <div className="relative z-10 p-3 bg-white/20 rounded-xl backdrop-blur-sm">
           <Ikon size={24} className="text-white" />
         </div>
-        {/* Kategori badge */}
         {showKategori && (
           <div className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1
                            bg-white/20 backdrop-blur-sm text-white rounded-full">
             {config.nama}
           </div>
         )}
-        {/* Waktu baca */}
         <div className="absolute top-3 right-3 flex items-center gap-1
-                         text-xs text-white/80 bg-black/20 backdrop-blur-sm
-                         px-2 py-1 rounded-full">
+                         text-xs text-white/80 bg-black/20 backdrop-blur-sm px-2 py-1 rounded-full">
           <Clock size={10} />
           <span>{artikel.waktuBaca} mnt</span>
         </div>
       </div>
-
-      {/* Content */}
       <div className="p-4 bg-[--bg-card]">
         <h3 className="text-sm font-bold text-[--text-primary] leading-snug mb-2
                        group-hover:text-finc-green transition-colors line-clamp-2">

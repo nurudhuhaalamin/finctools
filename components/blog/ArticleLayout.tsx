@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, Clock, Info, Lightbulb, AlertTriangle, XCircle, CheckSquare, TrendingUp, BarChart2, FileText, Wallet, Home, Bitcoin, Globe } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Clock, Info, Lightbulb, AlertTriangle, XCircle, CheckSquare, TrendingUp, BarChart2, Activity, FileText, Wallet, Bitcoin, Globe } from 'lucide-react'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import type { Artikel, KontenBlock, KategoriArtikel } from '@/lib/blog/types'
 import { kategoriConfig } from '@/lib/blog/types'
@@ -9,10 +9,9 @@ import { kategoriConfig } from '@/lib/blog/types'
 const ikonKategori: Record<KategoriArtikel, React.ElementType> = {
   investasi: TrendingUp,
   'saham-bursa': BarChart2,
-  trading: TrendingUp,
+  trading: Activity,
   pajak: FileText,
   'keuangan-pribadi': Wallet,
-  properti: Home,
   kripto: Bitcoin,
   'ekonomi-pasar': Globe,
 }
