@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { BookOpen, ArrowRight, TrendingUp, BarChart2, FileText, Wallet, Home, Bitcoin, Globe } from 'lucide-react'
+import { BookOpen, ArrowRight, TrendingUp, BarChart2, FileText, Wallet, Bitcoin, Globe, Activity } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ArticleCard from '@/components/blog/ArticleCard'
@@ -13,14 +13,19 @@ export const metadata: Metadata = {
 }
 
 const ikonKategori: Record<KategoriArtikel, React.ElementType> = {
-  investasi: TrendingUp, 'saham-bursa': BarChart2, trading: TrendingUp,
-  pajak: FileText, 'keuangan-pribadi': Wallet, properti: Home,
-  kripto: Bitcoin, 'ekonomi-pasar': Globe,
+  investasi: TrendingUp,
+  'saham-bursa': BarChart2,
+  trading: Activity,
+  pajak: FileText,
+  'keuangan-pribadi': Wallet,
+  kripto: Bitcoin,
+  'ekonomi-pasar': Globe,
 }
 
 export default function ArtikelPage() {
   const semua = getAllKategori()
   const terbaru = getArtikelTerbaru(6)
+
   return (
     <>
       <Header />
@@ -45,13 +50,16 @@ export default function ArtikelPage() {
               const jumlah = getArtikelByKategori(k).length
               const Ikon = ikonKategori[k]
               return (
-                <Link key={k} href={`/artikel/${k}`} className="group p-4 rounded-xl border border-[--border]
-                                                                   hover:border-finc-green/40 bg-[--bg-card] transition-all">
+                <Link key={k} href={`/artikel/${k}`}
+                  className="group p-4 rounded-xl border border-[--border]
+                             hover:border-finc-green/40 bg-[--bg-card] transition-all">
                   <div className="flex items-center gap-3 mb-2">
                     <div className={`p-2 rounded-lg bg-gradient-to-br ${config.gradientFrom} ${config.gradientTo}`}>
                       <Ikon size={14} className="text-white" />
                     </div>
-                    <p className="text-sm font-semibold text-[--text-primary] group-hover:text-finc-green transition-colors">{config.nama}</p>
+                    <p className="text-sm font-semibold text-[--text-primary] group-hover:text-finc-green transition-colors">
+                      {config.nama}
+                    </p>
                   </div>
                   <div className="flex items-center justify-between">
                     <p className="text-xs text-[--text-secondary]">{jumlah} artikel</p>
