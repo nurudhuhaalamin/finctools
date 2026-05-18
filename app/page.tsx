@@ -2,10 +2,12 @@ import Link from 'next/link'
 import {
   Wallet, Home, FileText, TrendingUp,
   BarChart2, Activity, Coins,
-  ArrowRight, Shield, Zap, RefreshCw,
+  ArrowRight, Shield, Zap, RefreshCw, BookOpen,
 } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ArticleCard from '@/components/blog/ArticleCard'
+import { getArtikelTerbaru } from '@/lib/blog/articles'
 
 /* ─── Data ─── */
 const categories = [
@@ -93,6 +95,7 @@ const featuredTools = [
 /* ─── Page ─── */
 export default function HomePage() {
   const totalTools = categories.reduce((sum, c) => sum + c.count, 0)
+  const artikelTerbaru = getArtikelTerbaru(3)
 
   return (
     <>
@@ -289,6 +292,38 @@ export default function HomePage() {
                 </div>
               )
             })}
+          </div>
+        </section>
+
+        {/* ════ ARTIKEL TERBARU ════ */}
+        <section className="mx-auto max-w-6xl px-4 py-14">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="font-heading text-2xl font-bold text-[--text-primary] mb-1">
+                Artikel Terbaru
+              </h2>
+              <p className="text-sm text-[--text-secondary]">
+                Panduan dan insight keuangan untuk investor Indonesia
+              </p>
+            </div>
+            <Link href="/artikel"
+              className="hidden sm:flex items-center gap-1.5 text-sm font-medium
+                         text-finc-green hover:underline">
+              <BookOpen size={14} />
+              Semua Artikel
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {artikelTerbaru.map(a => (
+              <ArticleCard key={a.slug} artikel={a} showKategori={true} />
+            ))}
+          </div>
+
+          <div className="sm:hidden text-center">
+            <Link href="/artikel" className="text-sm font-medium text-finc-green hover:underline">
+              Lihat Semua Artikel →
+            </Link>
           </div>
         </section>
 
